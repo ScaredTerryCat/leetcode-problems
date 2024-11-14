@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> result={};
+        unordered_map<int,int> unMap={};
+        for(int i=0;i<nums.size();i++){
+            int complement=target-nums[i];
+            if(unMap.find(complement)!=unMap.end()){
+                int j=i;
+                if(j>unMap[complement]){
+                    j+=unMap[complement];
+                    unMap[complement]=j-unMap[complement];
+                    j=j-unMap[complement];
+                }
+                result.push_back(unMap[complement]);
+                result.push_back(j);
+
+            }
+            unMap[nums[i]]=i;
+        }
+   return result; }
+};
